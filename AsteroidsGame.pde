@@ -1,14 +1,102 @@
-//your variable declarations here
+SpaceShip marvin;
+int factor = 2;//your variable declarations here
 public void setup() 
 {
+  size(500,500);
+  
+  marvin = new SpaceShip();
   //your code here
 }
 public void draw() 
 {
+  background(0,0,0);
+  marvin.show();
+  marvin.move();
+  marvin.keyPressed();
   //your code here
 }
-class SpaceShip //extends Floater  
+class SpaceShip extends Floater  
 {   
+  
+SpaceShip()
+{
+  corners = 26;
+  xCorners = new int[corners];
+  yCorners = new int[corners];
+  xCorners[0]=11*factor;
+  yCorners[0]=-1*factor;
+  xCorners[1]=11*factor;
+  yCorners[1]=1*factor;
+  xCorners[2]=6*factor;
+  yCorners[2]=1*factor;
+  xCorners[3]=6*factor;
+  yCorners[3]=3*factor;
+  xCorners[4]=2*factor;
+  yCorners[4]=3*factor;
+  xCorners[5]=-8*factor;
+  yCorners[5]=12*factor;
+
+  xCorners[6]=-13*factor;
+  yCorners[6]=12*factor;
+  xCorners[7]=-7*factor;
+  yCorners[7]=6*factor;
+  xCorners[8]=-7*factor;
+  yCorners[8]=5*factor;
+  xCorners[9]=-10*factor;
+  yCorners[9]=5*factor;
+  xCorners[10]=-10*factor;
+  yCorners[10]=3*factor;
+
+  xCorners[11]=-7*factor;
+  yCorners[11]=3*factor;
+  xCorners[12]=-7*factor;
+  yCorners[12]=2*factor;
+  xCorners[13]=-15*factor;
+  yCorners[13]=2*factor;
+  xCorners[14]=-15*factor;
+  yCorners[14]=-2*factor;
+  xCorners[15]=-7*factor;
+  yCorners[15]=-2*factor;
+
+  xCorners[16]=-7*factor;
+  yCorners[16]=-3*factor;
+  xCorners[17]=-10*factor;
+  yCorners[17]=-3*factor;
+  xCorners[18]=-10*factor;
+  yCorners[18]=-5*factor;
+  xCorners[19]=-7*factor;
+  yCorners[19]=-5*factor;
+
+  xCorners[20]=-7*factor;
+  yCorners[20]=-6*factor;
+  xCorners[21]=-13*factor;
+  yCorners[21]=-12*factor;
+  xCorners[22]=-8*factor;
+  yCorners[22]=-12*factor;
+  xCorners[23]=2*factor;
+  yCorners[23]=-3*factor;
+  xCorners[24]=6*factor;
+  yCorners[24]=-3*factor;
+  xCorners[25]=6*factor;
+  yCorners[25]=-1*factor;
+ 
+ myColor = color(255);
+ myCenterX =250;
+ myCenterY=250;
+ myDirectionX=0;
+ myDirectionY=0;
+ myPointDirection=0;
+}
+  public void setX(int x){myCenterX=x;}  
+  public int getX(){return (int)myCenterX;}   
+  public void setY(int y){myCenterY=y;}   
+  public int getY(){return (int)myCenterY;}   
+  public void setDirectionX(double x){myDirectionX=x;}   
+  public double getDirectionX(){return myDirectionY;}   
+  public void setDirectionY(double y){myDirectionY=y;}   
+  public double getDirectionY(){return myDirectionY;}   
+  public void setPointDirection(int degrees){myPointDirection = degrees;}   
+  public double getPointDirection(){return myPointDirection;} 
     //your code here
 }
 abstract class Floater //Do NOT modify the Floater class! Make changes in the SpaceShip class 
@@ -86,5 +174,44 @@ abstract class Floater //Do NOT modify the Floater class! Make changes in the Sp
     }   
     endShape(CLOSE);  
   }   
+  public void keyPressed()
+  {
+  if(keyPressed == true && key == 'a')
+  {
+    marvin.myCenterX = marvin.myCenterX - 5;
+  }
+  if(keyPressed == true && key == 'd')
+  {
+    marvin.myCenterX = marvin.myCenterX + 5;
+  }
+  if(keyPressed == true && key == 'w')
+  {
+    marvin.myCenterY = marvin.myCenterY - 5;
+  }
+  if(keyPressed == true && key == 'x')
+  {
+    marvin.myCenterY = marvin.myCenterY + 5;
+  }
+  if(keyPressed == true && key == 'q')
+  {
+    marvin.myCenterY = marvin.myCenterY - 5;
+    marvin.myCenterX = marvin.myCenterX - 5;
+  }
+  if(keyPressed == true && key == 'e')
+  {
+    marvin.myCenterY = marvin.myCenterY - 5;
+    marvin.myCenterX = marvin.myCenterX + 5;
+  }
+  if(keyPressed == true && key == 'z')
+  {
+    marvin.myCenterY = marvin.myCenterY + 5;
+    marvin.myCenterX = marvin.myCenterX - 5;
+  }
+  if(keyPressed == true && key == 'c')
+  {
+    marvin.myCenterY = marvin.myCenterY + 5;
+    marvin.myCenterX = marvin.myCenterX + 5;
+  }
+}
 } 
 
