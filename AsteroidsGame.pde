@@ -1,4 +1,5 @@
 SpaceShip marvin;
+double speed;
 int factor = 2;//your variable declarations here
 public void setup() 
 {
@@ -13,6 +14,7 @@ public void draw()
   marvin.show();
   marvin.move();
   marvin.keyPressed();
+  marvin.accelerate(speed);
   //your code here
 }
 class SpaceShip extends Floater  
@@ -80,7 +82,7 @@ SpaceShip()
   xCorners[25]=6*factor;
   yCorners[25]=-1*factor;
  
- myColor = color(255);
+ myColor = color(255,0,0);
  myCenterX =250;
  myCenterY=250;
  myDirectionX=0;
@@ -176,42 +178,31 @@ abstract class Floater //Do NOT modify the Floater class! Make changes in the Sp
   }   
   public void keyPressed()
   {
-  if(keyPressed == true && key == 'a')
-  {
-    marvin.myCenterX = marvin.myCenterX - 5;
-  }
-  if(keyPressed == true && key == 'd')
-  {
-    marvin.myCenterX = marvin.myCenterX + 5;
-  }
   if(keyPressed == true && key == 'w')
   {
-    marvin.myCenterY = marvin.myCenterY - 5;
+    marvin.myPointDirection = marvin.myPointDirection - 1;
   }
-  if(keyPressed == true && key == 'x')
+  if(keyPressed == true && key == 's')
   {
-    marvin.myCenterY = marvin.myCenterY + 5;
-  }
-  if(keyPressed == true && key == 'q')
-  {
-    marvin.myCenterY = marvin.myCenterY - 5;
-    marvin.myCenterX = marvin.myCenterX - 5;
-  }
-  if(keyPressed == true && key == 'e')
-  {
-    marvin.myCenterY = marvin.myCenterY - 5;
-    marvin.myCenterX = marvin.myCenterX + 5;
-  }
-  if(keyPressed == true && key == 'z')
-  {
-    marvin.myCenterY = marvin.myCenterY + 5;
-    marvin.myCenterX = marvin.myCenterX - 5;
+    marvin.myPointDirection = marvin.myPointDirection + 1;
   }
   if(keyPressed == true && key == 'c')
   {
-    marvin.myCenterY = marvin.myCenterY + 5;
-    marvin.myCenterX = marvin.myCenterX + 5;
+    speed =.01;
   }
+  if(keyPressed == true && key == 'h')
+  {
+    speed = 0;
+    myDirectionY = 0;
+    myDirectionX =0;
+    marvin.myPointDirection = Math.random()*360;
+    marvin.myCenterX = Math.random()*500;
+    marvin.myCenterY = Math.random()*500;
+  }
+}
+class Star
+{
+
 }
 } 
 
