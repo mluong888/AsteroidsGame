@@ -1,4 +1,5 @@
 SpaceShip marvin;
+Star [] back;
 double speed;
 int factor = 2;//your variable declarations here
 public void setup() 
@@ -6,15 +7,25 @@ public void setup()
   size(500,500);
   
   marvin = new SpaceShip();
+  back = new Star[(int)(Math.random()*150)];
+for(int i=0; i<back.length; i++)
+{
+  back[i] = new Star();
+}
   //your code here
 }
 public void draw() 
 {
   background(0,0,0);
+  for(int i=0; i<back.length; i++)
+{
+  back[i].show();
+}
   marvin.show();
   marvin.move();
   marvin.keyPressed();
   marvin.accelerate(speed);
+  
   //your code here
 }
 class SpaceShip extends Floater  
@@ -200,9 +211,20 @@ abstract class Floater //Do NOT modify the Floater class! Make changes in the Sp
     marvin.myCenterY = Math.random()*500;
   }
 }
+}
 class Star
 {
-
+    private int myX, myY;
+    Star()
+    {
+      myX = (int)(Math.random()*500);
+      myY = (int)(Math.random()*500);
+    }
+    public void show()
+    {
+      noStroke();
+      fill(255);
+      ellipse(myX,myY,5,5);
+    }
 }
-} 
 
