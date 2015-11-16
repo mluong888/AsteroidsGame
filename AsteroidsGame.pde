@@ -212,7 +212,7 @@ abstract class Floater //Do NOT modify the Floater class! Make changes in the Sp
   }
 }
 }
-class Star
+public class Star
 {
     private int myX, myY;
     Star()
@@ -226,5 +226,23 @@ class Star
       fill(255);
       ellipse(myX,myY,5,5);
     }
+
+public class Asteroids extends Floater
+{
+  Asteroids()
+  {
+
+  }
+  public void setX(int x){myCenterX=x;}  
+  public int getX(){return (int)myCenterX;}   
+  public void setY(int y){myCenterY=y;}   
+  public int getY(){return (int)myCenterY;}   
+  public void setDirectionX(double x){myDirectionX=x;}   
+  public double getDirectionX(){return myDirectionY;}   
+  public void setDirectionY(double y){myDirectionY=y;}   
+  public double getDirectionY(){return myDirectionY;}   
+  public void setPointDirection(int degrees){myPointDirection = degrees;}   
+  public double getPointDirection(){return myPointDirection;} 
+}
 }
 
