@@ -1,19 +1,27 @@
 SpaceShip marvin;
+Asteroids [] obstacles;
 Star [] back;
-double speed;
-int factor = 2;//your variable declarations here
+int factor = 2;
+int astFactor = 5;//your variable declarations here
+
 public void setup() 
 {
   size(500,500);
   
   marvin = new SpaceShip();
-  back = new Star[(int)(Math.random()*150)];
+  back = new Star[(int)(Math.random()*150)+30];
 for(int i=0; i<back.length; i++)
 {
   back[i] = new Star();
 }
+obstacles = new Asteroids[5];
+for (int j=0; j<obstacles.length; j++)
+{
+  obstacles[j] = new Asteroids();
+}
   //your code here
 }
+
 public void draw() 
 {
   background(0,0,0);
@@ -21,10 +29,15 @@ public void draw()
 {
   back[i].show();
 }
+  for(int j=0; j<obstacles.length; j++)
+  {
+    obstacles[j].show();
+    obstacles[j].move();
+  }
   marvin.show();
   marvin.move();
   marvin.keyPressed();
-  marvin.accelerate(speed);
+
   
   //your code here
 }
@@ -191,19 +204,18 @@ abstract class Floater //Do NOT modify the Floater class! Make changes in the Sp
   {
   if(keyPressed == true && key == 'w')
   {
-    marvin.myPointDirection = marvin.myPointDirection - 1;
+    marvin.rotate(-3);
   }
   if(keyPressed == true && key == 's')
   {
-    marvin.myPointDirection = marvin.myPointDirection + 1;
+    marvin.rotate(3);
   }
   if(keyPressed == true && key == 'c')
   {
-    speed =.01;
+    marvin.accelerate(0.01);
   }
   if(keyPressed == true && key == 'h')
   {
-    speed = 0;
     myDirectionY = 0;
     myDirectionX =0;
     marvin.myPointDirection = Math.random()*360;
@@ -226,12 +238,41 @@ public class Star
       fill(255);
       ellipse(myX,myY,5,5);
     }
-
+}
 public class Asteroids extends Floater
 {
+  private int rotSpeed;
   Asteroids()
   {
+  corners = 10;
+  xCorners = new int [corners];
+  yCorners = new int[corners];
+  xCorners[0] =2*astFactor;
+  yCorners[0] =-1*astFactor;
+  xCorners[1] =3*astFactor;
+  yCorners[1] =1*astFactor;
+  xCorners[2] =1*astFactor;
+  yCorners[2] =3*astFactor;
+  xCorners[3] =-1*astFactor;
+  yCorners[3] =2*astFactor;
+  xCorners[4] =-3*astFactor;
+  yCorners[4] =1*astFactor;
+  xCorners[5] =-3*astFactor;
+  yCorners[5] =0*astFactor;
+  xCorners[6] =-2*astFactor;
+  yCorners[6] =-2*astFactor;
+  xCorners[7] =0*astFactor;
+  yCorners[7] =-4*astFactor;
+  xCorners[8] =2*astFactor;
+  yCorners[8] =-3*astFactor;
+  xCorners[9] =3*astFactor;
+  yCorners[9] =-2*astFactor;
 
+  rotSpeed = (int)(Math.random()*5)-2;
+  myColor = color(110,110,110);
+  myCenterX =(int)(Math.random()*500);
+  myCenterY=(int)(Math.random()*500);
+  
   }
   public void setX(int x){myCenterX=x;}  
   public int getX(){return (int)myCenterX;}   
@@ -243,6 +284,12 @@ public class Asteroids extends Floater
   public double getDirectionY(){return myDirectionY;}   
   public void setPointDirection(int degrees){myPointDirection = degrees;}   
   public double getPointDirection(){return myPointDirection;} 
+
+public void move()
+{
+  rotate(rotSpeed);
+  super.move();
 }
 }
+
 
