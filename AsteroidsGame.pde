@@ -14,7 +14,7 @@ for(int i=0; i<back.length; i++)
 {
   back[i] = new Star();
 }
-obstacles = new Asteroids[5];
+obstacles = new Asteroids[(int)(Math.random()*5)+10];
 for (int j=0; j<obstacles.length; j++)
 {
   obstacles[j] = new Asteroids();
@@ -212,7 +212,7 @@ abstract class Floater //Do NOT modify the Floater class! Make changes in the Sp
   }
   if(keyPressed == true && key == 'c')
   {
-    marvin.accelerate(0.01);
+    marvin.accelerate(0.02);
   }
   if(keyPressed == true && key == 'h')
   {
@@ -270,6 +270,7 @@ public class Asteroids extends Floater
 
   rotSpeed = (int)(Math.random()*5)-2;
   myColor = color(110,110,110);
+  
   myCenterX =(int)(Math.random()*500);
   myCenterY=(int)(Math.random()*500);
   
@@ -289,6 +290,8 @@ public void move()
 {
   rotate(rotSpeed);
   super.move();
+  myCenterX += Math.cos(rotSpeed);
+  myCenterY += Math.sin(rotSpeed);
 }
 }
 
