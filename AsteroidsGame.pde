@@ -1,5 +1,5 @@
 SpaceShip marvin;
-Asteroids [] obstacles;
+ArrayList<Asteroids> obstacles = new ArrayList<Asteroids>();
 Star [] back;
 int factor = 2;
 int astFactor = 5;//your variable declarations here
@@ -14,10 +14,9 @@ for(int i=0; i<back.length; i++)
 {
   back[i] = new Star();
 }
-obstacles = new Asteroids[(int)(Math.random()*5)+10];
-for (int j=0; j<obstacles.length; j++)
+for (int j=0; j<(int)(Math.random()*5)+10; j++)
 {
-  obstacles[j] = new Asteroids();
+  obstacles.add(new Asteroids());
 }
   //your code here
 }
@@ -29,10 +28,17 @@ public void draw()
 {
   back[i].show();
 }
-  for(int j=0; j<obstacles.length; j++)
+  for(int j=0; j<obstacles.size(); j++)
   {
-    obstacles[j].show();
-    obstacles[j].move();
+    obstacles.get(j).show();
+    obstacles.get(j).move();
+  }
+  for(int k =0; k<obstacles.size();k++)
+  {
+    if(dist(marvin.getX(),marvin.getY(),obstacles.get(k).getX(),obstacles.get(k).getY())<20)
+    {
+      obstacles.remove(k);
+    }
   }
   marvin.show();
   marvin.move();
@@ -107,6 +113,7 @@ SpaceShip()
   yCorners[25]=-1*factor;
  
  myColor = color(255,0,0);
+ stroke(0,0,0);
  myCenterX =250;
  myCenterY=250;
  myDirectionX=0;
